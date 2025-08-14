@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - InfoPulse</title>
+    <meta name="description" content="Get in touch with InfoPulse - we'd love to hear from you" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      // Configure Tailwind (ignore TypeScript error - this is available at runtime via CDN)
+      // @ts-ignore
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['Inter', 'sans-serif'],
+              serif: ['Playfair Display', 'serif'],
+            },
+            colors: {
+              background: '#ffffff',
+              foreground: '#1a1a1a',
+              'muted-foreground': '#6b6b6b',
+              primary: '#1a73e8',
+              'primary-foreground': '#ffffff',
+              secondary: '#f7f7f7',
+              'secondary-foreground': '#1a1a1a',
+            },
+          },
+        },
+      }
+    </script>
+
+    <style type="text/css">
+      /* Custom utility classes */
+      .magazine-container {
+        width: 100%;
+        max-width: 1280px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      
+      .nav-link {
+        position: relative;
+        color: #1a1a1a;
+        font-weight: 500;
+        font-size: 0.875rem;
+        transition: color 0.3s ease;
+      }
+      
+      .nav-link:after {
+        content: '';
+        position: absolute;
+        width: 0;
+        height: 1px;
+        bottom: -4px;
+        left: 0;
+        background-color: #1a73e8;
+        transition: width 0.3s ease;
+      }
+      
+      .nav-link:hover {
+        color: #1a73e8;
+      }
+      
+      .nav-link:hover:after {
+        width: 100%;
+      }
+
+      /* Shadow utility */
+      .shadow-sm {
+        box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+      }
+
+      /* Animation classes */
+      .animate-fade-in {
+        animation: fadeIn 1s ease-out;
+      }
+      
+      .animate-scale-in {
+        animation: scaleIn 1.2s ease-out;
+      }
+      
+      @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+      
+      @keyframes scaleIn {
+        from { opacity: 0; transform: scale(0.9); }
+        to { opacity: 1; transform: scale(1); }
+      }
+
+      /* Contact form styles */
+      .form-input {
+        background-color: #f7f7f7;
+        border: 1px solid #e5e7eb;
+        transition: border-color 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .form-input:focus {
+        outline: none;
+        border-color: #1a73e8;
+        box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.1);
+      }
+
+      /* Contact card styles */
+      .contact-card {
+        background-color: white;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+      
+      .contact-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+      }
+    </style>
+</head>
+
+<body class="bg-background text-foreground antialiased">
+    <!-- Header (same as index.html) -->
+    <header class="fixed top-0 right-0 left-0 z-50 bg-transparent py-8 px-8 transition-all duration-300 ease-in-out">
+      <div class="magazine-container">
+        <div class="flex items-center justify-between">
+          <div class="flex items-center">
+            <a href="../index.html" class="font-serif text-xl font-medium tracking-tight md:text-2xl"> InfoPulse </a>
+          </div>
+
+          <!-- Desktop Navigation -->
+          <nav class="hidden items-center space-x-8 md:flex">
+            <a href="../index.html" class="nav-link">Home</a>
+            <a href="about.html" class="nav-link">About</a>
+            <a href="contact.html" class="nav-link">Contact</a>
+          </nav>
+
+          <!-- Mobile Menu Button -->
+          <button class="p-2 md:hidden" aria-label="Toggle menu">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="3" y1="12" x2="21" y2="12"></line>
+              <line x1="3" y1="6" x2="21" y2="6"></line>
+              <line x1="3" y1="18" x2="21" y2="18"></line>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main class="px-8">
+      <!-- Hero Section -->
+      <section class="relative pt-32 pb-20">
+        <div class="magazine-container">
+          <div class="max-w-4xl mx-auto text-center animate-fade-in">
+            <!-- Breadcrumb -->
+            <nav class="mb-8">
+              <ol class="flex items-center justify-center space-x-2 text-sm text-muted-foreground">
+                <li><a href="../index.html" class="hover:text-primary transition-colors">Home</a></li>
+                <li><span class="mx-2">/</span></li>
+                <li class="text-foreground">Contact</li>
+              </ol>
+            </nav>
+
+            <h1 class="mb-8 font-serif text-4xl leading-tight font-medium md:text-5xl lg:text-6xl">
+              Get in Touch
+            </h1>
+            <p class="text-muted-foreground text-xl max-w-3xl mx-auto">
+              Have a question, suggestion, or just want to say hello? We'd love to hear from you. Drop us a message and we'll get back to you as soon as possible.
+            </p>
+          </div>
+        </div>
+      </section>
+
+
+
+      <!-- Contact Form Section -->
+      <section class="py-20">
+        <div class="magazine-container">
+          <div class="grid grid-cols-1 items-start gap-12 lg:grid-cols-2">
+            <!-- Contact Form -->
+            <div class="animate-fade-in">
+              <div class="mb-8">
+                <h2 class="mb-4 font-serif text-3xl font-medium">Send us a Message</h2>
+                <p class="text-muted-foreground text-lg">
+                  Fill out the form below and we'll get back to you within 24 hours. We're here to help with any questions or feedback you might have.
+                </p>
+              </div>
+
+              <form class="space-y-6" action="#" method="POST">
+                <div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
+                  <div>
+                    <label for="firstName" class="block text-sm font-medium text-gray-700 mb-2">First Name</label>
+                    <input type="text" id="firstName" name="firstName" required class="form-input w-full rounded-md px-4 py-3 text-sm">
+                  </div>
+                  <div>
+                    <label for="lastName" class="block text-sm font-medium text-gray-700 mb-2">Last Name</label>
+                    <input type="text" id="lastName" name="lastName" required class="form-input w-full rounded-md px-4 py-3 text-sm">
+                  </div>
+                </div>
+
+                <div>
+                  <label for="email" class="block text-sm font-medium text-gray-700 mb-2">Email Address</label>
+                  <input type="email" id="email" name="email" required class="form-input w-full rounded-md px-4 py-3 text-sm">
+                </div>
+
+                <div>
+                  <label for="subject" class="block text-sm font-medium text-gray-700 mb-2">Subject</label>
+                  <select id="subject" name="subject" required class="form-input w-full rounded-md px-4 py-3 text-sm">
+                    <option value="">Please select a subject</option>
+                    <option value="general">General Inquiry</option>
+                    <option value="article">Article Suggestion</option>
+                    <option value="collaboration">Collaboration</option>
+                    <option value="technical">Technical Support</option>
+                    <option value="feedback">Feedback</option>
+                    <option value="other">Other</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label for="message" class="block text-sm font-medium text-gray-700 mb-2">Message</label>
+                  <textarea id="message" name="message" rows="6" required placeholder="Tell us more about your inquiry..." class="form-input w-full rounded-md px-4 py-3 text-sm resize-vertical"></textarea>
+                </div>
+
+                <div class="flex items-start">
+                  <div class="flex items-center h-5">
+                    <input type="checkbox" id="newsletter" name="newsletter" class="h-4 w-4 text-primary border-gray-300 rounded focus:ring-primary">
+                  </div>
+                  <div class="ml-3 text-sm">
+                    <label for="newsletter" class="text-gray-700">
+                      I'd like to receive updates about new articles and InfoPulse news.
+                    </label>
+                  </div>
+                </div>
+
+                <button type="submit" class="group bg-primary text-primary-foreground hover:bg-primary/90 inline-flex items-center justify-center rounded-md px-8 py-4 font-medium transition-all w-full sm:w-auto">
+                  Send Message
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-2 transition-transform group-hover:translate-x-1">
+                    <path d="m22 2-7 20-4-9-9-4Z"/>
+                    <path d="M22 2 11 13"/>
+                  </svg>
+                </button>
+              </form>
+            </div>
+
+            <!-- Contact Info & FAQ -->
+            <div class="animate-scale-in">
+              <div class="bg-secondary/30 rounded-lg p-8 mb-8">
+                <h3 class="font-serif text-xl font-medium mb-6">Quick Questions?</h3>
+                <div class="space-y-4">
+                  <div>
+                    <h4 class="font-medium text-sm mb-2">How quickly do you respond?</h4>
+                    <p class="text-muted-foreground text-sm">We typically respond within 24 hours during business days.</p>
+                  </div>
+                  <div>
+                    <h4 class="font-medium text-sm mb-2">Can I suggest article topics?</h4>
+                    <p class="text-muted-foreground text-sm">Absolutely! We love hearing from our community about topics they'd like to see covered.</p>
+                  </div>
+                  <div>
+                    <h4 class="font-medium text-sm mb-2">Do you accept guest posts?</h4>
+                    <p class="text-muted-foreground text-sm">Yes, we welcome high-quality guest contributions. Please reach out with your ideas!</p>
+                  </div>
+                  <div>
+                    <h4 class="font-medium text-sm mb-2">Looking for collaboration?</h4>
+                    <p class="text-muted-foreground text-sm">We're always open to partnerships and collaborations that benefit our developer community.</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="bg-primary/5 rounded-lg p-8">
+                <div class="text-center">
+                  <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <i class="fa-solid fa-clock text-primary text-lg"></i>
+                  </div>
+                  <h3 class="font-serif text-lg font-medium mb-2">Response Time</h3>
+                  <p class="text-muted-foreground text-sm mb-4">
+                    We're committed to responding to all inquiries promptly and professionally.
+                  </p>
+                  <div class="text-xs text-muted-foreground">
+                    <p>Monday - Friday: Within 24 hours</p>
+                    <p>Weekends: Within 48 hours</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CTA Section -->
+      <section class="bg-primary text-primary-foreground py-20">
+        <div class="magazine-container text-center">
+          <div class="mx-auto max-w-2xl">
+            <h2 class="mb-6 font-serif text-3xl font-medium md:text-4xl">Join Our Community</h2>
+            <p class="text-primary-foreground/80 mx-auto mb-8 max-w-lg">
+              While you're here, why not explore our latest articles or connect with us on social media? Join thousands of developers who trust InfoPulse for their learning journey.
+            </p>
+
+            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+              <a href="allArticle.html" class="group bg-primary-foreground text-primary hover:bg-primary-foreground/90 inline-flex items-center justify-center rounded-md px-6 py-3 font-medium transition-all">
+                Browse Articles
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-2 transition-transform group-hover:translate-x-1">
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                  <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+              </a>
+
+              <a href="about.html" class="group border border-primary-foreground/20 text-primary-foreground hover:bg-primary-foreground/10 inline-flex items-center justify-center rounded-md px-6 py-3 font-medium transition-all">
+                About Us
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-2 transition-transform group-hover:translate-x-1">
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                  <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer (same as index.html) -->
+    <footer class="border-t bg-white px-8">
+      <div class="magazine-container py-16">
+        <div class="grid grid-cols-1 gap-8 md:grid-cols-3">
+          <div class="md:col-span-2">
+            <a href="../index.html" class="mb-4 inline-block font-serif text-2xl font-medium tracking-tight"> InfoPulse </a>
+            <p class="text-muted-foreground mb-6 max-w-md">" Infopulse is your go-to source for web, mobile, and DevOps insights. We deliver tutorials, best practices, and industry updates to help developers build smarter, faster, and more scalable applications."</p>
+            <div class="flex space-x-4">
+              <a href="#" class="hover:text-primary text-gray-600 transition-colors" aria-label="Instagram">
+                <i class="fa-brands fa-instagram text-2xl"></i>
+              </a>
+              <a href="#" class="hover:text-primary text-gray-600 transition-colors" aria-label="X">
+                <i class="fa-brands fa-square-x-twitter text-2xl"></i>
+              </a>
+              <a href="#" class="hover:text-primary text-gray-600 transition-colors" aria-label="Github">
+                <i class="fa-brands fa-github text-2xl"></i>
+              </a>
+            </div>
+          </div>
+
+          <div>
+            <h3 class="mb-4 text-sm font-medium tracking-wider uppercase">Information</h3>
+            <ul class="space-y-2">
+              <li><a href="about.html" class="text-muted-foreground hover:text-primary text-sm transition-colors">About</a></li>
+              <li><a href="contact.html" class="text-muted-foreground hover:text-primary text-sm transition-colors">Contact</a></li>
+              <li><a href="#" class="text-muted-foreground hover:text-primary text-sm transition-colors">Terms of Use</a></li>
+              <li><a href="Links.html" class="text-muted-foreground hover:text-primary text-sm transition-colors">Links</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="border-t">
+        <div class="magazine-container flex flex-col items-center justify-center py-6 md:flex-row">
+          <p class="text-muted-foreground mb-4 text-sm md:mb-0">&copy; 2025 InfoPulse Magazine. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Mobile Navigation Overlay (same as index.html) -->
+    <div class="fixed inset-0 z-40 translate-x-full transform bg-white transition-transform duration-300 ease-in-out">
+      <div class="flex h-full flex-col items-center justify-center space-y-8 p-8">
+        <button class="absolute top-8 right-8" aria-label="Close menu">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+
+        <a href="../index.html" class="text-2xl font-medium">Home</a>
+        <a href="about.html" class="text-2xl font-medium">About</a>
+        <a href="contact.html" class="text-2xl font-medium">Contact</a>
+      </div>
+    </div>
+
+    <!-- JavaScript for interactive elements (same as index.html) -->
+    <script>
+      // Header scroll effect
+      window.addEventListener('scroll', function() {
+        const header = document.querySelector('header');
+        if (header) {
+          if (window.scrollY > 50) {
+            header.classList.add('bg-white', 'shadow-sm');
+            header.classList.remove('bg-transparent');
+          } else {
+            header.classList.add('bg-transparent');
+            header.classList.remove('bg-white', 'shadow-sm');
+          }
+        }
+      });
+
+      // Mobile menu toggle
+      const menuButton = document.querySelector('button[aria-label="Toggle menu"]');
+      const closeButton = document.querySelector('button[aria-label="Close menu"]');
+      const mobileNav = document.querySelector('.fixed.inset-0.z-40');
+
+      if (menuButton && closeButton && mobileNav) {
+        menuButton.addEventListener('click', function() {
+          mobileNav.classList.remove('translate-x-full');
+        });
+
+        closeButton.addEventListener('click', function() {
+          mobileNav.classList.add('translate-x-full');
+        });
+      }
+
+      // Form submission (placeholder)
+      document.querySelector('form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        alert('Thank you for your message! We will get back to you soon.');
+        this.reset();
+      });
+    </script>
+</body>
+</html>
