@@ -6,7 +6,7 @@
     <title>InfoPulse</title>
     <meta name="description" content="A curated magazine exploring design, culture, and thoughtful living" />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet" />
-    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css">
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -161,6 +161,8 @@
           </div>
         </div>
       </section>
+      
+      <hr>
 
       <!-- Featured Carousel Section -->
 
@@ -195,7 +197,7 @@
           <div class="mb-12 flex items-end justify-between">
             <div>
               <h2 class="mb-2 font-serif text-3xl font-medium">Latest Articles</h2>
-              <p class="text-muted-foreground max-w-xl">Insights and stories that capture the essence of contemporary culture.</p>
+              <p class="text-muted-foreground max-w-xl">Tips, tutorials, and stories from the world of web, mobile, and DevOps development.</p>
             </div>
             <a href="#" class="group hidden items-center text-sm font-medium tracking-wider uppercase md:inline-flex">
               View All
@@ -310,71 +312,40 @@
     <!-- Footer -->
     <footer class="border-t bg-white px-8">
       <div class="magazine-container py-16">
-        <div class="grid grid-cols-1 gap-8 md:grid-cols-4">
+        <div class="grid grid-cols-1 gap-8 md:grid-cols-3">
           <div class="md:col-span-2">
             <a href="/" class="mb-4 inline-block font-serif text-2xl font-medium tracking-tight"> InfoPulse </a>
-            <p class="text-muted-foreground mb-6 max-w-md">A curated magazine exploring design, culture, and thoughtful living. We showcase stories that inspire and connect.</p>
+            <p class="text-muted-foreground mb-6 max-w-md">“ Infopulse is your go-to source for web, mobile, and DevOps insights. We deliver tutorials, best practices, and industry updates to help developers build smarter, faster, and more scalable applications.“</p>
             <div class="flex space-x-4">
               <a href="#" class="hover:text-primary text-gray-600 transition-colors" aria-label="Instagram">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
-                  <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
-                  <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
-                </svg>
+              <i class="fa-brands fa-instagram text-2xl"></i>
               </a>
-              <a href="#" class="hover:text-primary text-gray-600 transition-colors" aria-label="Twitter">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z" /></svg>
+              <a href="#" class="hover:text-primary text-gray-600 transition-colors" aria-label="X">
+                <i class="fa-brands fa-square-x-twitter text-2xl"></i>
               </a>
-              <a href="#" class="hover:text-primary text-gray-600 transition-colors" aria-label="Pinterest">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <line x1="12" x2="12" y1="8" y2="16" />
-                  <line x1="18" x2="18" y1="12" y2="16" />
-                  <line x1="6" x2="6" y1="12" y2="16" />
-                  <line x1="6" x2="6" y1="12" y2="12" />
-                  <path d="M6 12a6 6 0 0 0 12 0c0-5-6-8-6-8-6 3-6 8-6 8Z" />
-                </svg>
+              <a href="#" class="hover:text-primary text-gray-600 transition-colors" aria-label="Github">
+                  <i class="fa-brands fa-github text-2xl"></i>
               </a>
             </div>
           </div>
 
-          <div>
-            <h3 class="mb-4 text-sm font-medium tracking-wider uppercase">Explore</h3>
-            <ul class="space-y-2">
-              <li><a href="#" class="text-muted-foreground hover:text-primary text-sm transition-colors">Home</a></li>
-              <li><a href="#" class="text-muted-foreground hover:text-primary text-sm transition-colors">Features</a></li>
-              <li><a href="#" class="text-muted-foreground hover:text-primary text-sm transition-colors">Culture</a></li>
-              <li><a href="#" class="text-muted-foreground hover:text-primary text-sm transition-colors">Style</a></li>
-              <li><a href="#" class="text-muted-foreground hover:text-primary text-sm transition-colors">Photography</a></li>
-              <li><a href="#" class="text-muted-foreground hover:text-primary text-sm transition-colors">Travel</a></li>
-              <li><a href="#" class="text-muted-foreground hover:text-primary text-sm transition-colors">Archive</a></li>
-            </ul>
-          </div>
+
 
           <div>
             <h3 class="mb-4 text-sm font-medium tracking-wider uppercase">Information</h3>
             <ul class="space-y-2">
-              <li><a href="#" class="text-muted-foreground hover:text-primary text-sm transition-colors">About</a></li>
+              <li><a href="#" class="text-muted-foreground hover:text-primary text-sm transition-colors">About </a></li>
               <li><a href="#" class="text-muted-foreground hover:text-primary text-sm transition-colors">Contact</a></li>
-              <li><a href="#" class="text-muted-foreground hover:text-primary text-sm transition-colors">Advertise</a></li>
-              <li><a href="#" class="text-muted-foreground hover:text-primary text-sm transition-colors">Careers</a></li>
-              <li><a href="#" class="text-muted-foreground hover:text-primary text-sm transition-colors">Privacy Policy</a></li>
               <li><a href="#" class="text-muted-foreground hover:text-primary text-sm transition-colors">Terms of Use</a></li>
-              <li><a href="#" class="text-muted-foreground hover:text-primary text-sm transition-colors">Cookie Policy</a></li>
+              <li><a href="#" class="text-muted-foreground hover:text-primary text-sm transition-colors">Links</a></li>
             </ul>
           </div>
         </div>
       </div>
 
       <div class="border-t">
-        <div class="magazine-container flex flex-col items-center justify-between py-6 md:flex-row">
-          <p class="text-muted-foreground mb-4 text-sm md:mb-0">&copy; 2023 ESSENCE Magazine. All rights reserved.</p>
-          <button class="group inline-flex items-center text-sm font-medium">
-            Back to top
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-2 transition-transform group-hover:-translate-y-1">
-              <line x1="12" y1="19" x2="12" y2="5"></line>
-              <polyline points="5 12 12 5 19 12"></polyline>
-            </svg>
-          </button>
+        <div class="magazine-container flex flex-col items-center justify-center py-6 md:flex-row">
+          <p class="text-muted-foreground mb-4 text-sm md:mb-0">&copy; 2025 InfoPulse Magazine. All rights reserved.</p>
         </div>
       </div>
     </footer>
@@ -393,7 +364,7 @@
         <a href="#" class="text-2xl font-medium">Features</a>
         <a href="#" class="text-2xl font-medium">Culture</a>
         <a href="#" class="text-2xl font-medium">Style</a>
-        <a href="#" class="text-2xl font-medium">About</a>
+        <a href="#" class="text-2xl font-medium">About </a>
       </div>
     </div>
 
