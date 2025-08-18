@@ -283,59 +283,87 @@
       <!-- Related Articles -->
       <section class="bg-secondary/30 py-20">
         <div class="magazine-container">
-          <div class="mb-12 text-center">
-            <h2 class="mb-2 font-serif text-3xl font-medium">Related Articles</h2>
-            <p class="text-muted-foreground max-w-xl mx-auto">Continue reading with these related articles</p>
+          <div class="mb-12 flex items-end justify-between">
+            <div>
+              <h2 class="mb-2 font-serif text-3xl font-medium">Latest Articles</h2>
+              <p class="text-muted-foreground max-w-xl">Tips, tutorials, and stories from the world of web, mobile, and DevOps development.</p>
+            </div>
+            <a href="allArticle.html" class="group hidden items-center text-sm font-medium tracking-wider uppercase md:inline-flex">
+              View All
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-2 transition-transform group-hover:translate-x-1">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </a>
           </div>
 
           <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 lg:gap-8">
-            <!-- Related Article 1 -->
-            <article class="bg-white overflow-hidden rounded-lg transition-transform hover:scale-[1.02]">
-              <a href="article2.html" class="block">
-                <div class="overflow-hidden">
-                  <img src="https://images.unsplash.com/photo-1495195134817-aeb325a55b65?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Related article" class="h-48 w-full object-cover" />
-                </div>
-                <div class="p-6">
-                  <div class="mb-3">
-                    <span class="text-primary text-xs font-medium tracking-wider uppercase">Category</span>
-                  </div>
-                  <h3 class="mb-3 font-serif text-lg font-medium">Related Article Title</h3>
-                  <p class="text-muted-foreground text-sm">Brief description of the related article content.</p>
-                </div>
-              </a>
-            </article>
-
-            <!-- Related Article 2 -->
-            <article class="bg-white overflow-hidden rounded-lg transition-transform hover:scale-[1.02]">
+            <!-- Article Card 1 -->
+            <article class="article-card overflow-hidden rounded-lg">
               <a href="article3.html" class="block">
                 <div class="overflow-hidden">
-                  <img src="https://images.unsplash.com/photo-1517142089942-ba376ce32a2e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Related article" class="h-48 w-full object-cover" />
+                  <img src="/assets/ai.jpg" alt="Slow Living" class="h-64 w-full object-cover" />
                 </div>
                 <div class="p-6">
                   <div class="mb-3">
-                    <span class="text-primary text-xs font-medium tracking-wider uppercase">Category</span>
+                    <span class="text-primary text-xs font-medium tracking-wider uppercase"> DevOps & Cloud Mastery </span>
                   </div>
-                  <h3 class="mb-3 font-serif text-lg font-medium">Another Related Article</h3>
-                  <p class="text-muted-foreground text-sm">Brief description of the related article content.</p>
+                  <h3 class="mb-3 font-serif text-xl font-medium">AI in DevOps & Pipeline Automation</h3>
+                  <p class="text-muted-foreground mb-4 text-sm">Smarter Workflows, Faster Delivery</p>
+                  <div class="text-muted-foreground flex items-center justify-between text-xs">
+                    <span>August 17, 2025</span>
+                  </div>
                 </div>
               </a>
             </article>
 
-            <!-- Related Article 3 -->
-            <article class="bg-white overflow-hidden rounded-lg transition-transform hover:scale-[1.02]">
+            <!-- Article Card 2 -->
+            <article class="article-card overflow-hidden rounded-lg">
               <a href="article4.html" class="block">
                 <div class="overflow-hidden">
-                  <img src="https://images.unsplash.com/photo-1493809842364-b78817add7ffb?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Related article" class="h-48 w-full object-cover" />
+                  <img src="/assets/java.jpg" alt="Culinary Traditions" class="h-64 w-full object-cover" />
                 </div>
                 <div class="p-6">
                   <div class="mb-3">
-                    <span class="text-primary text-xs font-medium tracking-wider uppercase">Category</span>
+                    <span class="text-primary text-xs font-medium tracking-wider uppercase"> Web Development </span>
                   </div>
-                  <h3 class="mb-3 font-serif text-lg font-medium">Third Related Article</h3>
-                  <p class="text-muted-foreground text-sm">Brief description of the related article content.</p>
+                  <h3 class="mb-3 font-serif text-xl font-medium">Fixing the Infamous NullPointerException in Java</h3>
+                  <p class="text-muted-foreground mb-4 text-sm">What is a NullPointerException?</p>
+                  <div class="text-muted-foreground flex items-center justify-between text-xs">
+                    <span>August 17, 2025</span>
+                  </div>
                 </div>
               </a>
             </article>
+
+            <!-- Article Card 3 -->
+            <article class="article-card overflow-hidden rounded-lg">
+              <a href="article5.html" class="block">
+                <div class="overflow-hidden">
+                  <img src="/assets/python-vs-net.png" alt="Digital Craftsmanship" class="h-64 w-full object-cover" />
+                </div>
+                <div class="p-6">
+                  <div class="mb-3">
+                    <span class="text-primary text-xs font-medium tracking-wider uppercase"> Web Development </span>
+                  </div>
+                  <h3 class="mb-3 font-serif text-xl font-medium">Solving Dependency Hell: The Most Common Problem for Python and .NET Developers</h3>
+                  <p class="text-muted-foreground mb-4 text-sm">Managing packages shouldn’t feel like fighting dragons.</p>
+                  <div class="text-muted-foreground flex items-center justify-between text-xs">
+                    <span>August 18, 2025</span>
+                  </div>
+                </div>
+              </a>
+            </article>
+          </div>
+
+          <div class="mt-12 text-center md:hidden">
+            <a href="allArticle.html" class="group inline-flex items-center text-sm font-medium tracking-wider uppercase">
+              View All Articles
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-2 transition-transform group-hover:translate-x-1">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </a>
           </div>
         </div>
       </section>
