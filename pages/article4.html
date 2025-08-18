@@ -158,8 +158,8 @@
           </nav>
 
           <!-- Mobile Menu Button -->
-          <button class="p-2 md:hidden" aria-label="Toggle menu">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <button id="menuButton" class="p-2 md:hidden" aria-label="Toggle menu">
+            <svg id="burgerIcon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <line x1="3" y1="12" x2="21" y2="12"></line>
               <line x1="3" y1="6" x2="21" y2="6"></line>
               <line x1="3" y1="18" x2="21" y2="18"></line>
@@ -447,10 +447,10 @@ this.name = Objects.requireNonNull(name, "Name cannot be null");
     </footer>
 
     <!-- Mobile Navigation Overlay (same as index.html) -->
-    <div class="fixed inset-0 z-40 translate-x-full transform bg-white transition-transform duration-300 ease-in-out">
+    <div id="mobileNav" class="fixed inset-0 z-40 translate-x-full transform bg-white transition-transform duration-300 ease-in-out">
       <div class="flex h-full flex-col items-center justify-center space-y-8 p-8">
         <button class="absolute top-8 right-8" aria-label="Close menu">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <svg id="closeIcon" class="hidden" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <line x1="18" y1="6" x2="6" y2="18"></line>
             <line x1="6" y1="6" x2="18" y2="18"></line>
           </svg>
@@ -480,19 +480,26 @@ this.name = Objects.requireNonNull(name, "Name cannot be null");
       });
 
       // Mobile menu toggle
-      const menuButton = document.querySelector('button[aria-label="Toggle menu"]');
-      const closeButton = document.querySelector('button[aria-label="Close menu"]');
-      const mobileNav = document.querySelector('.fixed.inset-0.z-40');
+      const menuButton = document.getElementById('menuButton');
+      const burgerIcon = document.getElementById('burgerIcon');
+      const closeIcon = document.getElementById('closeIcon');
+      const mobileNav = document.getElementById('mobileNav');
 
-      if (menuButton && closeButton && mobileNav) {
-        menuButton.addEventListener('click', function() {
-          mobileNav.classList.remove('translate-x-full');
-        });
+      menuButton.addEventListener('click', () => {
+        const isOpen = !mobileNav.classList.contains('translate-x-full');
 
-        closeButton.addEventListener('click', function() {
+        if (isOpen) {
+          // Close menu
           mobileNav.classList.add('translate-x-full');
-        });
-      }
+          burgerIcon.classList.remove('hidden');
+          closeIcon.classList.add('hidden');
+        } else {
+          // Open menu
+          mobileNav.classList.remove('translate-x-full');
+          burgerIcon.classList.add('hidden');
+          closeIcon.classList.remove('hidden');
+        }
+      });
     </script>
 </body>
 </html>
