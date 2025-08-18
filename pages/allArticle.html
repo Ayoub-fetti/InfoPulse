@@ -3,9 +3,461 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>All Articles - InfoPulse</title>
+    <meta name="description" content="Browse all our latest articles on web development, mobile development, and DevOps practices." />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      // Configure Tailwind
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['Inter', 'sans-serif'],
+              serif: ['Playfair Display', 'serif'],
+            },
+            colors: {
+              background: '#ffffff',
+              foreground: '#1a1a1a',
+              'muted-foreground': '#6b6b6b',
+              primary: '#1a73e8',
+              'primary-foreground': '#ffffff',
+              secondary: '#f7f7f7',
+              'secondary-foreground': '#1a1a1a',
+            },
+          },
+        },
+      }
+    </script>
+
+    <style type="text/css">
+      /* Custom utility classes */
+      .magazine-container {
+        width: 100%;
+        max-width: 1280px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      
+      .nav-link {
+        position: relative;
+        color: #1a1a1a;
+        font-weight: 500;
+        font-size: 0.875rem;
+        transition: color 0.3s ease;
+      }
+      
+      .nav-link:after {
+        content: '';
+        position: absolute;
+        width: 0;
+        height: 1px;
+        bottom: -4px;
+        left: 0;
+        background-color: #1a73e8;
+        transition: width 0.3s ease;
+      }
+      
+      .nav-link:hover {
+        color: #1a73e8;
+      }
+      
+      .nav-link:hover:after {
+        width: 100%;
+      }
+
+      /* Shadow utility */
+      .shadow-sm {
+        box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+      }
+
+      /* Article card styles */
+      .article-card {
+        background-color: white;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+      
+      .article-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+      }
+
+      /* Animation classes */
+      .animate-fade-in {
+        animation: fadeIn 0.8s ease-out forwards;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* Filter button styles */
+      .filter-btn {
+        transition: all 0.3s ease;
+      }
+
+      .filter-btn.active {
+        background-color: #1a73e8;
+        color: white;
+      }
+    </style>
 </head>
-<body>
-    <h1>this is all article page</h1>
+
+<body class="bg-background text-foreground antialiased">
+    <!-- Header -->
+    <header class="fixed top-0 right-0 left-0 z-50 bg-transparent py-8 px-8 transition-all duration-300 ease-in-out">
+      <div class="magazine-container">
+        <div class="flex items-center justify-between">
+          <div class="flex items-center">
+            <a href="../index.html" class="font-serif text-xl font-medium tracking-tight md:text-2xl"> InfoPulse </a>
+          </div>
+
+          <!-- Desktop Navigation -->
+          <nav class="hidden items-center space-x-8 md:flex">
+            <a href="../index.html" class="nav-link">Home</a>
+            <a href="about.html" class="nav-link">About</a>
+            <a href="contact.html" class="nav-link">Contact</a>
+          </nav>
+
+          <!-- Mobile Menu Button -->
+          <button class="p-2 md:hidden" aria-label="Toggle menu">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="3" y1="12" x2="21" y2="12"></line>
+              <line x1="3" y1="6" x2="21" y2="6"></line>
+              <line x1="3" y1="18" x2="21" y2="18"></line>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main class="px-8">
+      <!-- Hero Section -->
+      <section class="relative pt-32 pb-16">
+        <div class="magazine-container">
+          <div class="max-w-4xl mx-auto text-center animate-fade-in">
+            <h1 class="mb-6 font-serif text-4xl leading-tight font-medium md:text-5xl lg:text-6xl">
+              All Articles
+            </h1>
+            <p class="text-muted-foreground text-xl max-w-3xl mx-auto mb-12">
+              Explore our complete collection of tutorials, insights, and best practices for web development, mobile development, and DevOps.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Filter Section -->
+      <section class="pb-12">
+        <div class="magazine-container">
+          <div class="flex flex-wrap justify-center gap-4">
+            <button class="filter-btn active px-6 py-2 rounded-full border border-gray-200 text-sm font-medium" data-filter="all">
+              All Articles
+            </button>
+            <button class="filter-btn px-6 py-2 rounded-full border border-gray-200 text-sm font-medium" data-filter="web-development">
+              Web Development
+            </button>
+            <button class="filter-btn px-6 py-2 rounded-full border border-gray-200 text-sm font-medium" data-filter="devops">
+              DevOps & Cloud
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Articles Grid Section -->
+      <section class="pb-20">
+        <div class="magazine-container">
+          <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+            
+            <!-- Article 1 -->
+            <article class="article-card overflow-hidden rounded-lg" data-category="web-development">
+              <a href="article1.html" class="block">
+                <div class="overflow-hidden">
+                  <img src="/assets/coding.jpg" alt="Build the Future, One Line at a Time" class="h-64 w-full object-cover" />
+                </div>
+                <div class="p-6">
+                  <div class="mb-3">
+                    <span class="text-primary text-xs font-medium tracking-wider uppercase">Web Development</span>
+                  </div>
+                  <h3 class="mb-3 font-serif text-xl font-medium">Build the Future, One Line at a Time</h3>
+                  <p class="text-muted-foreground mb-4 text-sm">From Beginner Basics to Expert-Level Development</p>
+                  <div class="text-muted-foreground flex items-center justify-between text-xs">
+                    <span>February 4, 2025</span>
+                    <span>8 min read</span>
+                  </div>
+                </div>
+              </a>
+            </article>
+
+            <!-- Article 2 -->
+            <article class="article-card overflow-hidden rounded-lg" data-category="devops">
+              <a href="article2.html" class="block">
+                <div class="overflow-hidden">
+                  <img src="/assets/security.jpg" alt="Streamline, Deploy, Scale" class="h-64 w-full object-cover" />
+                </div>
+                <div class="p-6">
+                  <div class="mb-3">
+                    <span class="text-primary text-xs font-medium tracking-wider uppercase">DevOps & Cloud Mastery</span>
+                  </div>
+                  <h3 class="mb-3 font-serif text-xl font-medium">Streamline, Deploy, Scale</h3>
+                  <p class="text-muted-foreground mb-4 text-sm">Bridging the Gap Between Development and Operations</p>
+                  <div class="text-muted-foreground flex items-center justify-between text-xs">
+                    <span>August 16, 2025</span>
+                    <span>7 min read</span>
+                  </div>
+                </div>
+              </a>
+            </article>
+
+            <!-- Article 3 -->
+            <article class="article-card overflow-hidden rounded-lg" data-category="devops">
+              <a href="article3.html" class="block">
+                <div class="overflow-hidden">
+                  <img src="/assets/ai.jpg" alt="AI in DevOps & Pipeline Automation" class="h-64 w-full object-cover" />
+                </div>
+                <div class="p-6">
+                  <div class="mb-3">
+                    <span class="text-primary text-xs font-medium tracking-wider uppercase">DevOps & Cloud Mastery</span>
+                  </div>
+                  <h3 class="mb-3 font-serif text-xl font-medium">AI in DevOps & Pipeline Automation</h3>
+                  <p class="text-muted-foreground mb-4 text-sm">Smarter Workflows, Faster Delivery</p>
+                  <div class="text-muted-foreground flex items-center justify-between text-xs">
+                    <span>August 17, 2025</span>
+                    <span>8 min read</span>
+                  </div>
+                </div>
+              </a>
+            </article>
+
+            <!-- Article 4 -->
+            <article class="article-card overflow-hidden rounded-lg" data-category="web-development">
+              <a href="article4.html" class="block">
+                <div class="overflow-hidden">
+                  <img src="/assets/java.jpg" alt="Fixing the Infamous NullPointerException in Java" class="h-64 w-full object-cover" />
+                </div>
+                <div class="p-6">
+                  <div class="mb-3">
+                    <span class="text-primary text-xs font-medium tracking-wider uppercase">Web Development</span>
+                  </div>
+                  <h3 class="mb-3 font-serif text-xl font-medium">Fixing the Infamous NullPointerException in Java</h3>
+                  <p class="text-muted-foreground mb-4 text-sm">What is a NullPointerException?</p>
+                  <div class="text-muted-foreground flex items-center justify-between text-xs">
+                    <span>August 17, 2025</span>
+                    <span>10 min read</span>
+                  </div>
+                </div>
+              </a>
+            </article>
+
+            <!-- Article 5 -->
+            <article class="article-card overflow-hidden rounded-lg" data-category="web-development">
+              <a href="article5.html" class="block">
+                <div class="overflow-hidden">
+                  <img src="/assets/python-vs-net.png" alt="Solving Dependency Hell" class="h-64 w-full object-cover" />
+                </div>
+                <div class="p-6">
+                  <div class="mb-3">
+                    <span class="text-primary text-xs font-medium tracking-wider uppercase">Web Development</span>
+                  </div>
+                  <h3 class="mb-3 font-serif text-xl font-medium">Solving Dependency Hell: The Most Common Problem for Python and .NET Developers</h3>
+                  <p class="text-muted-foreground mb-4 text-sm">Managing packages shouldn't feel like fighting dragons.</p>
+                  <div class="text-muted-foreground flex items-center justify-between text-xs">
+                    <span>August 18, 2025</span>
+                    <span>5 min read</span>
+                  </div>
+                </div>
+              </a>
+            </article>
+
+            <!-- Article 6 -->
+            <article class="article-card overflow-hidden rounded-lg" data-category="web-development">
+              <a href="article6.html" class="block">
+                <div class="overflow-hidden">
+                  <img src="/assets/net.png" alt="Advanced .NET Development" class="h-64 w-full object-cover" />
+                </div>
+                <div class="p-6">
+                  <div class="mb-3">
+                    <span class="text-primary text-xs font-medium tracking-wider uppercase">Web Development</span>
+                  </div>
+                  <h3 class="mb-3 font-serif text-xl font-medium">Advanced .NET Development Techniques</h3>
+                  <p class="text-muted-foreground mb-4 text-sm">Mastering modern .NET for scalable applications</p>
+                  <div class="text-muted-foreground flex items-center justify-between text-xs">
+                    <span>August 19, 2025</span>
+                    <span>12 min read</span>
+                  </div>
+                </div>
+              </a>
+            </article>
+
+          </div>
+
+          <!-- Load More Button -->
+          <div class="text-center mt-16">
+            <button class="group bg-primary text-primary-foreground hover:bg-primary/90 inline-flex items-center justify-center rounded-md px-8 py-4 font-medium transition-all">
+              Load More Articles
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-2">
+                <path d="M12 5v14"></path>
+                <path d="m19 12-7 7-7-7"></path>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Newsletter Section -->
+      <section class="bg-primary text-primary-foreground py-20">
+        <div class="magazine-container text-center">
+          <div class="mx-auto max-w-2xl">
+            <h2 class="mb-6 font-serif text-3xl font-medium md:text-4xl">Stay Updated</h2>
+            <p class="text-primary-foreground/80 mx-auto mb-8 max-w-lg">
+              Get the latest articles and tutorials delivered directly to your inbox. Join our community of developers.
+            </p>
+
+            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center max-w-md mx-auto">
+              <input type="email" placeholder="Enter your email" class="flex-1 px-4 py-3 rounded-md text-gray-900 bg-white focus:outline-none focus:ring-2 focus:ring-white/20" />
+              <button class="group bg-primary-foreground text-primary hover:bg-primary-foreground/90 inline-flex items-center justify-center rounded-md px-6 py-3 font-medium transition-all whitespace-nowrap">
+                Subscribe
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-2 transition-transform group-hover:translate-x-1">
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                  <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t bg-white px-8">
+      <div class="magazine-container py-16">
+        <div class="grid grid-cols-1 gap-8 md:grid-cols-3">
+          <div class="md:col-span-2">
+            <a href="../index.html" class="mb-4 inline-block font-serif text-2xl font-medium tracking-tight"> InfoPulse </a>
+            <p class="text-muted-foreground mb-6 max-w-md">" Infopulse is your go-to source for web, mobile, and DevOps insights. We deliver tutorials, best practices, and industry updates to help developers build smarter, faster, and more scalable applications."</p>
+            <div class="flex space-x-4">
+              <a href="#" class="hover:text-primary text-gray-600 transition-colors" aria-label="Instagram">
+              <i class="fa-brands fa-instagram text-2xl"></i>
+              </a>
+              <a href="#" class="hover:text-primary text-gray-600 transition-colors" aria-label="X">
+                <i class="fa-brands fa-square-x-twitter text-2xl"></i>
+              </a>
+              <a href="#" class="hover:text-primary text-gray-600 transition-colors" aria-label="Github">
+                  <i class="fa-brands fa-github text-2xl"></i>
+              </a>
+            </div>
+          </div>
+
+          <div>
+            <h3 class="mb-4 text-sm font-medium tracking-wider uppercase">Information</h3>
+            <ul class="space-y-2">
+              <li><a href="about.html" class="text-muted-foreground hover:text-primary text-sm transition-colors">About </a></li>
+              <li><a href="contact.html" class="text-muted-foreground hover:text-primary text-sm transition-colors">Contact</a></li>
+              <li><a href="#" class="text-muted-foreground hover:text-primary text-sm transition-colors">Terms of Use</a></li>
+              <li><a href="Links.html" class="text-muted-foreground hover:text-primary text-sm transition-colors">Links</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="border-t">
+        <div class="magazine-container flex flex-col items-center justify-center py-6 md:flex-row">
+          <p class="text-muted-foreground mb-4 text-sm md:mb-0">&copy; 2025 InfoPulse Magazine. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Mobile Navigation Overlay -->
+    <div class="fixed inset-0 z-40 translate-x-full transform bg-white transition-transform duration-300 ease-in-out">
+      <div class="flex h-full flex-col items-center justify-center space-y-8 p-8">
+        <button class="absolute top-8 right-8" aria-label="Close menu">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+
+        <a href="../index.html" class="text-2xl font-medium">Home</a>
+        <a href="about.html" class="text-2xl font-medium">About</a>
+        <a href="contact.html" class="text-2xl font-medium">Contact</a>
+      </div>
+    </div>
+
+    <!-- JavaScript for interactive elements -->
+    <script>
+      // Header scroll effect
+      window.addEventListener('scroll', function() {
+        const header = document.querySelector('header');
+        if (header) {
+          if (window.scrollY > 50) {
+            header.classList.add('bg-white', 'shadow-sm');
+            header.classList.remove('bg-transparent');
+          } else {
+            header.classList.add('bg-transparent');
+            header.classList.remove('bg-white', 'shadow-sm');
+          }
+        }
+      });
+
+      // Mobile menu toggle
+      const menuButton = document.querySelector('button[aria-label="Toggle menu"]');
+      const closeButton = document.querySelector('button[aria-label="Close menu"]');
+      const mobileNav = document.querySelector('.fixed.inset-0.z-40');
+
+      if (menuButton && closeButton && mobileNav) {
+        menuButton.addEventListener('click', function() {
+          mobileNav.classList.remove('translate-x-full');
+        });
+
+        closeButton.addEventListener('click', function() {
+          mobileNav.classList.add('translate-x-full');
+        });
+      }
+
+      // Filter functionality
+      const filterButtons = document.querySelectorAll('.filter-btn');
+      const articleCards = document.querySelectorAll('.article-card');
+
+      filterButtons.forEach(button => {
+        button.addEventListener('click', function() {
+          const filter = this.getAttribute('data-filter');
+          
+          // Update active button
+          filterButtons.forEach(btn => btn.classList.remove('active'));
+          this.classList.add('active');
+          
+          // Filter articles
+          articleCards.forEach(card => {
+            const category = card.getAttribute('data-category');
+            
+            if (filter === 'all' || category === filter) {
+              card.style.display = 'block';
+              card.style.animation = 'fadeIn 0.5s ease-out';
+            } else {
+              card.style.display = 'none';
+            }
+          });
+        });
+      });
+
+      // Load more functionality (placeholder)
+      const loadMoreBtn = document.querySelector('button:contains("Load More Articles")');
+      if (loadMoreBtn) {
+        loadMoreBtn.addEventListener('click', function() {
+          // Add your load more logic here
+          console.log('Load more articles...');
+          // You can implement pagination or lazy loading here
+        });
+      }
+    </script>
+
 </body>
 </html>
