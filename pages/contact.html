@@ -178,7 +178,7 @@
                 </p>
               </div>
 
-              <form class="space-y-6" action="#" method="POST">
+              <form class="space-y-6" action="https://formspree.io/f/xrblweed" method="POST">
                 <div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
                   <div>
                     <label for="firstName" class="block text-sm font-medium text-gray-700 mb-2">First Name</label>
@@ -192,19 +192,19 @@
 
                 <div>
                   <label for="email" class="block text-sm font-medium text-gray-700 mb-2">Email Address</label>
-                  <input type="email" id="email" name="email" required class="form-input w-full rounded-md px-4 py-3 text-sm">
+                  <input type="email" id="email" name="_replyto" required class="form-input w-full rounded-md px-4 py-3 text-sm">
                 </div>
 
                 <div>
                   <label for="subject" class="block text-sm font-medium text-gray-700 mb-2">Subject</label>
-                  <select id="subject" name="subject" required class="form-input w-full rounded-md px-4 py-3 text-sm">
+                  <select id="subject" name="_subject" required class="form-input w-full rounded-md px-4 py-3 text-sm">
                     <option value="">Please select a subject</option>
-                    <option value="general">General Inquiry</option>
-                    <option value="article">Article Suggestion</option>
-                    <option value="collaboration">Collaboration</option>
-                    <option value="technical">Technical Support</option>
-                    <option value="feedback">Feedback</option>
-                    <option value="other">Other</option>
+                    <option value="General Inquiry - FettiVerse">General Inquiry</option>
+                    <option value="Article Suggestion - FettiVerse">Article Suggestion</option>
+                    <option value="Collaboration - FettiVerse">Collaboration</option>
+                    <option value="Technical Support - FettiVerse">Technical Support</option>
+                    <option value="Feedback - FettiVerse">Feedback</option>
+                    <option value="Other - FettiVerse">Other</option>
                   </select>
                 </div>
 
@@ -215,7 +215,7 @@
 
                 <div class="flex items-start">
                   <div class="flex items-center h-5">
-                    <input type="checkbox" id="newsletter" name="newsletter" class="h-4 w-4 text-primary border-gray-300 rounded focus:ring-primary">
+                    <input type="checkbox" id="newsletter" name="newsletter" value="yes" class="h-4 w-4 text-primary border-gray-300 rounded focus:ring-primary">
                   </div>
                   <div class="ml-3 text-sm">
                     <label for="newsletter" class="text-gray-700">
@@ -223,6 +223,10 @@
                     </label>
                   </div>
                 </div>
+
+                <!-- Hidden fields for Formspree -->
+                <input type="hidden" name="_next" value="https://fettiverse.tech>
+                <input type="hidden" name="_captcha" value="false">
 
                 <button type="submit" class="group bg-primary text-primary-foreground hover:bg-primary/90 inline-flex items-center justify-center rounded-md px-8 py-4 font-medium transition-all w-full sm:w-auto">
                   Send Message
@@ -403,11 +407,32 @@
         }
       });
 
-      // Form submission (placeholder)
+      // Enhanced form submission for Formspree
       document.querySelector('form').addEventListener('submit', function(e) {
+        const submitBtn = this.querySelector('button[type="submit"]');
+        const originalText = submitBtn.innerHTML;
+        
+        // Show loading state
+        submitBtn.innerHTML = `
+          <svg class="animate-spin -ml-1 mr-3 h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+          </svg>
+          Sending...
+        `;
+        submitBtn.disabled = true;
+        
+        // If you don't have a thank you page, prevent default and show alert
+        // Remove these lines if you created a thank-you.html page
         e.preventDefault();
-        alert('Thank you for your message! We will get back to you soon.');
-        this.reset();
+        
+        // Simulate form submission (remove this when using real Formspree)
+        setTimeout(() => {
+          alert('Thank you for your message! We will get back to you soon.');
+          this.reset();
+          submitBtn.innerHTML = originalText;
+          submitBtn.disabled = false;
+        }, 2000);
       });
     </script>
 </body>
