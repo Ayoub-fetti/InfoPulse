@@ -181,6 +181,25 @@
         <div class="magazine-container">
           <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
             
+            <!-- Article 7 -->
+            <article class="article-card overflow-hidden rounded-lg" data-category="devops">
+              <a href="article7.html" class="block">
+                <div class="overflow-hidden">
+                  <img src="/assets/observability.webp" loading="lazy" alt="Build the Future, One Line at a Time" class="h-64 w-full object-cover" />
+                </div>
+                <div class="p-6">
+                  <div class="mb-3">
+                    <span class="text-primary text-xs font-medium tracking-wider uppercase">DevOps & Cloud Mastery</span>
+                  </div>
+                  <h3 class="mb-3 font-serif text-xl font-medium">What is Observability in DevOps? A Complete Guide</h3>
+                  <p class="text-muted-foreground mb-4 text-sm">Understanding how observability powers modern DevOps practices</p>
+                  <div class="text-muted-foreground flex items-center justify-between text-xs">
+                    <span>August 21, 2025</span>
+                    <span>5 min read</span>
+                  </div>
+                </div>
+              </a>
+            </article>
             <!-- Article 1 -->
             <article class="article-card overflow-hidden rounded-lg" data-category="web-development">
               <a href="article1.html" class="block">
@@ -432,41 +451,61 @@
           closeIcon.classList.remove('hidden');
         }
       });
+
       // Filter functionality
       const filterButtons = document.querySelectorAll('.filter-btn');
       const articleCards = document.querySelectorAll('.article-card');
 
+      let articlesToShow = 9;
+      let currentFilter = 'all';
+
+      function updateArticlesDisplay() {
+        let shown = 0;
+        articleCards.forEach(card => {
+          const category = card.getAttribute('data-category');
+          // Show only if matches filter and within limit
+          if ((currentFilter === 'all' || category === currentFilter) && shown < articlesToShow) {
+            card.style.display = 'block';
+            card.style.animation = 'fadeIn 0.5s ease-out';
+            shown++;
+          } else {
+            card.style.display = 'none';
+          }
+        });
+
+        // Show/hide Load More button
+        const totalVisible = Array.from(articleCards).filter(card => (currentFilter === 'all' || card.getAttribute('data-category') === currentFilter)).length;
+        if (shown < totalVisible) {
+          loadMoreBtn.style.display = 'inline-flex';
+        } else {
+          loadMoreBtn.style.display = 'none';
+        }
+      }
+
       filterButtons.forEach(button => {
         button.addEventListener('click', function() {
-          const filter = this.getAttribute('data-filter');
-          
+          currentFilter = this.getAttribute('data-filter');
+          articlesToShow = 9; // Reset to initial count on filter change
+
           // Update active button
           filterButtons.forEach(btn => btn.classList.remove('active'));
           this.classList.add('active');
-          
-          // Filter articles
-          articleCards.forEach(card => {
-            const category = card.getAttribute('data-category');
-            
-            if (filter === 'all' || category === filter) {
-              card.style.display = 'block';
-              card.style.animation = 'fadeIn 0.5s ease-out';
-            } else {
-              card.style.display = 'none';
-            }
-          });
+
+          updateArticlesDisplay();
         });
       });
 
-      // Load more functionality (placeholder)
-      const loadMoreBtn = document.querySelector('button:contains("Load More Articles")');
+      // Load more functionality
+      const loadMoreBtn = document.querySelector('button.group.bg-primary');
       if (loadMoreBtn) {
         loadMoreBtn.addEventListener('click', function() {
-          // Add your load more logic here
-          console.log('Load more articles...8');
-          // You can implement pagination or lazy loading here
+          articlesToShow += 9;
+          updateArticlesDisplay();
         });
       }
+
+      // Initial display
+      updateArticlesDisplay();
     </script>
 
 </body>
