@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="UV mapping is essential in 3D graphics, allowing textures to wrap correctly onto 3D models. With Python, especially through tools like Blender’s API, artists and developers can automate and streamline UV mapping. This article explains what UV mapping is, why it matters, and how Python makes it easier." />
+    <meta name="keywords" content="UV Mapping Python,Blender Python UV Mapping,3D Graphics Automation,UV Unwrapping with Python,Blender Python Scripting,Game Development UV Mapping,Procedural UV Mapping,Python 3D Modeling,Smart UV Projection Python,Blender Automation Scripts,Texture Mapping Python,UV Mapping Tutorial,Python for 3D Artists,Automating UV Maps,Python in Game Development">
+    <meta name="author" content="Ayoub Fetti">    
+    <title>UV Mapping in 3D Graphics with Python: A Practical Guide - FettiVerse</title>
+    <link rel="shortcut icon" href="/assets/logo.png" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      // Configure Tailwind (ignore TypeScript error - this is available at runtime via CDN)
+      // @ts-ignore
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['Inter', 'sans-serif'],
+              serif: ['Playfair Display', 'serif'],
+            },
+            colors: {
+              background: '#ffffff',
+              foreground: '#1a1a1a',
+              'muted-foreground': '#6b6b6b',
+              primary: '#1a73e8',
+              'primary-foreground': '#ffffff',
+              secondary: '#f7f7f7',
+              'secondary-foreground': '#1a1a1a',
+            },
+          },
+        },
+      }
+    </script>
+
+    <style type="text/css">
+      /* Custom utility classes */
+      .magazine-container {
+        width: 100%;
+        max-width: 1280px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      
+      .nav-link {
+        position: relative;
+        color: #1a1a1a;
+        font-weight: 500;
+        font-size: 0.875rem;
+        transition: color 0.3s ease;
+      }
+      
+      .nav-link:after {
+        content: '';
+        position: absolute;
+        width: 0;
+        height: 1px;
+        bottom: -4px;
+        left: 0;
+        background-color: #1a73e8;
+        transition: width 0.3s ease;
+      }
+      
+      .nav-link:hover {
+        color: #1a73e8;
+      }
+      
+      .nav-link:hover:after {
+        width: 100%;
+      }
+
+      /* Shadow utility */
+      .shadow-sm {
+        box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+      }
+
+      /* Article content styles */
+      .article-content {
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      .article-content h2 {
+        font-size: 1.875rem;
+        font-weight: 600;
+        margin-top: 2rem;
+        margin-bottom: 1rem;
+        color: #1a1a1a;
+      }
+
+      .article-content h3 {
+        font-size: 1.5rem;
+        font-weight: 600;
+        margin-top: 1.5rem;
+        margin-bottom: 0.75rem;
+        color: #1a1a1a;
+      }
+
+      .article-content p {
+        margin-bottom: 1.25rem;
+        line-height: 1.75;
+        color: #4a4a4a;
+      }
+
+      .article-content ul, .article-content ol {
+        margin-bottom: 1.25rem;
+        padding-left: 1.5rem;
+      }
+
+      .article-content li {
+        margin-bottom: 0.5rem;
+        line-height: 1.75;
+        color: #4a4a4a;
+      }
+
+      .article-content blockquote {
+        border-left: 4px solid #187023;
+        padding-left: 1.5rem;
+        margin: 2rem 0;
+        font-style: italic;
+        font-size: 1.125rem;
+        color: #6b6b6b;
+      }
+
+      .article-content pre {
+        background-color: #f7f7f7;
+        padding: 1rem;
+        border-radius: 0.5rem;
+        overflow-x: auto;
+        margin: 1.5rem 0;
+      }
+
+      .article-content code {
+        background-color: #f7f7f7;
+        padding: 0.25rem 0.5rem;
+        border-radius: 0.25rem;
+        font-family: 'Courier New', monospace;
+        font-size: 0.875rem;
+      }
+    </style>
+</head>
+
+<body class="bg-background text-foreground antialiased">
+    <!-- Header (same as index.html) -->
+    <header class="fixed top-0 right-0 left-0 z-50 bg-transparent py-8 px-8 transition-all duration-300 ease-in-out">
+      <div class="magazine-container">
+        <div class="flex items-center justify-between">
+          <div class="flex items-center">
+            <a href="../index.html" class="font-serif text-xl font-medium tracking-tight md:text-2xl"> FettiVerse </a>
+          </div>
+
+          <!-- Desktop Navigation -->
+          <nav class="hidden items-center space-x-8 md:flex">
+            <a href="../index.html" class="nav-link">Home</a>
+            <a href="allArticle.html" class="nav-link">Articles</a>
+            <a href="about.html" class="nav-link">About</a>
+            <a href="contact.html" class="nav-link">Contact</a>
+          </nav>
+
+          <!-- Mobile Menu Button -->
+          <button id="menuButton" class="p-2 md:hidden" aria-label="Toggle menu">
+            <svg id="burgerIcon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="3" y1="12" x2="21" y2="12"></line>
+              <line x1="3" y1="6" x2="21" y2="6"></line>
+              <line x1="3" y1="18" x2="21" y2="18"></line>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main class="px-8">
+      <!-- Article Hero Section -->
+      <section class="relative pt-32 pb-16">
+        <div class="magazine-container">
+          <div class="max-w-4xl mx-auto text-center">
+            <!-- Article Meta -->
+            <div class="mb-6">
+              <span class="bg-primary/5 text-primary inline-block rounded-full px-3 py-1 text-xs tracking-widest uppercase mb-4">
+                Web & Mobile Development
+              </span>
+              <div class="flex items-center justify-center space-x-4 text-sm text-muted-foreground">
+                <time datetime="2023-12-01">August 22, 2025</time>
+                <span>•</span>
+                <span>5 min read</span>
+              </div>
+            </div>
+
+            <!-- Article Title -->
+            <h1 class="mb-8 font-serif text-4xl leading-tight font-medium md:text-5xl lg:text-6xl max-w-4xl mx-auto">
+              UV Mapping in 3D Graphics with Python: A Practical Guide
+            </h1>
+
+            <!-- Article Subtitle -->
+            <p class="text-muted-foreground text-xl max-w-3xl mx-auto mb-12">
+              How Python scripting simplifies UV mapping in Blender and 3D workflows
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Featured Image -->
+      <section class="pb-16">
+        <div class="magazine-container">
+          <div class="max-w-5xl mx-auto">
+            <div class="overflow-hidden rounded-lg">
+              <img src="/assets/Python.png" loading="lazy" alt="Article featured image" class="w-full h-[400px] md:h-[500px] object-cover" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Article Content -->
+      <section class="pb-20">
+        <div class="magazine-container">
+          <article class="article-content">
+            <!-- Article Body -->
+            <div class="prose prose-lg max-w-none">
+              <p>
+                UV mapping is essential in 3D graphics, allowing textures to wrap correctly onto 3D models. With Python, especially through tools like Blender’s API, artists and developers can automate and streamline UV mapping. This article explains what UV mapping is, why it matters, and how Python makes it easier.
+              </p>
+
+              <p>
+                3D models are the backbone of games, animations, and visual effects. But raw geometry alone isn’t enough—models need textures to look realistic. That’s where UV mapping comes in.
+              </p>
+
+              <h2>What is UV Mapping?</h2>
+              <p>
+                UV mapping is the process of projecting a 2D image (the texture) onto a 3D model.
+              </p>
+              <ul>
+                <li>* <span class="font-bold">U and V</span> are the axes of the texture map (since X, Y, Z are already used for 3D space).</li>
+                <li>* Without <span class="font-bold">UV</span> mapping, textures would stretch or distort randomly across a model’s surface.</li>
+              </ul>
+              <p>
+                Think of it as unfolding a 3D object into a flat surface, like unwrapping a candy bar and laying its wrapper flat.
+              </p>
+
+              <h2>Why Python for UV Mapping?</h2>
+              <p>
+                Most 3D software (like Blender, Maya, or 3ds Max) comes with UV mapping tools. But when dealing with:
+              </p>
+              <ul>
+                <li class="font-bold">* Complex models</li>
+                <li class="font-bold">* Batch operations</li>
+                <li class="font-bold">* Procedural workflows</li>
+              </ul>
+              <p>
+                Python offers a way to <span class="font-bold">automate and standardize</span> UV mapping. In Blender, for instance, the Python API allows you to:
+              </p>
+              <ul>
+                <li>* Automatically unwrap models</li>
+                <li>* Apply scaling and packing to optimize texture space</li>
+                <li>* Create custom UV projections</li>
+                <li>* Batch process multiple assets for games or VFX</li>
+              </ul>
+              <h3>Example: Automatic UV Unwrapping with Python in Blender</h3>
+<pre><code>
+import bpy
+
+# Select the active object
+obj = bpy.context.active_object
+
+# Switch to Edit Mode
+bpy.ops.object.mode_set(mode='EDIT')
+
+# Select all faces
+bpy.ops.mesh.select_all(action='SELECT')
+
+# Apply Smart UV Unwrap
+bpy.ops.uv.smart_project(angle_limit=66, island_margin=0.03)
+
+# Switch back to Object Mode
+bpy.ops.object.mode_set(mode='OBJECT')
+
+print("UV mapping complete!")
+
+              
+</code></pre>
+              <p>
+                This script takes the active object in Blender and automatically applies a Smart UV Projection—perfect for quick unwrapping.
+              </p>
+
+              <h2>Benefits of Using Python for UV Mapping</h2>
+              <ol>
+                <ul>1. <span class="font-bold">Speed</span>: Automate repetitive tasks instead of manually unwrapping.</ul>
+                <ul>2. <span class="font-bold">Consistency</span>: Ensure assets follow the same UV mapping rules.</ul>
+                <ul>3. <span class="font-bold">Scalability</span>: Ideal for large projects with dozens of models.</ul>
+                <ul>4. <span class="font-bold">Customization</span>: Create UV layouts tailored to specific pipelines.</ul>
+              </ol>
+
+              <h2>Use Cases in Game Development and Animation</h2>
+              <ul>
+                <li>* <span class="font-bold">Games</span>: Batch unwrapping hundreds of assets for texture baking.</li>
+                <li>* <span class="font-bold">Film/Animation</span>: Ensuring consistent UVs across complex scenes.</li>
+                <li>* <span class="font-bold">Procedural Workflows</span>: Integrating UV mapping into larger Python pipelines for rendering or simulation.</li>
+              </ul>
+
+              <h2>Takeaway</h2>
+              <p>
+                UV mapping is essential for realistic 3D graphics, and Python makes it smarter, faster, and more scalable. Whether you’re working on a game, film, or personal 3D project, leveraging Python for UV automation in tools like Blender can save hours of manual effort and ensure professional-quality results.
+              </p>
+
+            <!-- Article Tags -->
+            <div class="mt-12 pt-8 border-t">
+              <h3 class="text-sm font-medium tracking-wider uppercase mb-4">Tags</h3>
+              <div class="flex flex-wrap gap-2">
+                <span class="bg-secondary text-secondary-foreground px-3 py-1 rounded-full text-sm">UV Mapping Python</span>
+                <span class="bg-secondary text-secondary-foreground px-3 py-1 rounded-full text-sm">Blender Python UV Mapping</span>
+                <span class="bg-secondary text-secondary-foreground px-3 py-1 rounded-full text-sm">Python 3D Modeling</span>
+                <span class="bg-secondary text-secondary-foreground px-3 py-1 rounded-full text-sm">Blender Automation Scripts</span>
+                <span class="bg-secondary text-secondary-foreground px-3 py-1 rounded-full text-sm">Python in Game Development</span>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- Related Articles -->
+      <section class="bg-secondary/30 py-20">
+        <div class="magazine-container">
+          <div class="mb-12 flex items-end justify-between">
+            <div>
+              <h2 class="mb-2 font-serif text-3xl font-medium">Latest Articles</h2>
+              <p class="text-muted-foreground max-w-xl">Tips, tutorials, and stories from the world of web, mobile, and DevOps development.</p>
+            </div>
+            <a href="allArticle.html" class="group hidden items-center text-sm font-medium tracking-wider uppercase md:inline-flex">
+              View All
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-2 transition-transform group-hover:translate-x-1">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </a>
+          </div>
+
+          <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 lg:gap-8">
+            <!-- Article Card 1 -->
+            <article class="article-card overflow-hidden rounded-lg">
+              <a href="article3.html" class="block">
+                <div class="overflow-hidden">
+                  <img src="/assets/ai.jpg" loading="lazy" alt="Slow Living" class="h-64 w-full object-cover" />
+                </div>
+                <div class="p-6">
+                  <div class="mb-3">
+                    <span class="text-primary text-xs font-medium tracking-wider uppercase"> DevOps & Cloud Mastery </span>
+                  </div>
+                  <h3 class="mb-3 font-serif text-xl font-medium">AI in DevOps & Pipeline Automation</h3>
+                  <p class="text-muted-foreground mb-4 text-sm">Smarter Workflows, Faster Delivery</p>
+                  <div class="text-muted-foreground flex items-center justify-between text-xs">
+                    <span>August 17, 2025</span>
+                  </div>
+                </div>
+              </a>
+            </article>
+
+            <!-- Article Card 2 -->
+            <article class="article-card overflow-hidden rounded-lg">
+              <a href="article4.html" class="block">
+                <div class="overflow-hidden">
+                  <img src="/assets/java.jpg" loading="lazy" alt="Culinary Traditions" class="h-64 w-full object-cover" />
+                </div>
+                <div class="p-6">
+                  <div class="mb-3">
+                    <span class="text-primary text-xs font-medium tracking-wider uppercase"> Web Development </span>
+                  </div>
+                  <h3 class="mb-3 font-serif text-xl font-medium">Fixing the Infamous NullPointerException in Java</h3>
+                  <p class="text-muted-foreground mb-4 text-sm">What is a NullPointerException?</p>
+                  <div class="text-muted-foreground flex items-center justify-between text-xs">
+                    <span>August 17, 2025</span>
+                  </div>
+                </div>
+              </a>
+            </article>
+
+            <!-- Article Card 3 -->
+            <article class="article-card overflow-hidden rounded-lg">
+              <a href="article1.html" class="block">
+                <div class="overflow-hidden">
+                  <img src="/assets/coding.jpg" loading="lazy" alt="Digital Craftsmanship" class="h-64 w-full object-cover" />
+                </div>
+                <div class="p-6">
+                  <div class="mb-3">
+                    <span class="text-primary text-xs font-medium tracking-wider uppercase"> Web Development </span>
+                  </div>
+                  <h3 class="mb-3 font-serif text-xl font-medium">Build the Future, One Line at a Time</h3>
+                  <p class="text-muted-foreground mb-4 text-sm">From Beginner Basics to Expert-Level Development</p>
+                  <div class="text-muted-foreground flex items-center justify-between text-xs">
+                    <span>February 4, 2025</span>
+                  </div>
+                </div>
+              </a>
+            </article>
+          </div>
+
+          <div class="mt-12 text-center md:hidden">
+            <a href="allArticle.html" class="group inline-flex items-center text-sm font-medium tracking-wider uppercase">
+              View All Articles
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-2 transition-transform group-hover:translate-x-1">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer (same as index.html) -->
+    <footer class="border-t bg-white px-8">
+      <div class="magazine-container py-16">
+        <div class="grid grid-cols-1 gap-8 md:grid-cols-3">
+          <div class="md:col-span-2">
+            <a href="../index.html" class="mb-4 inline-block font-serif text-2xl font-medium tracking-tight"> FettiVerse </a>
+            <p class="text-muted-foreground mb-6 max-w-md">" FettiVerse is your go-to source for web, mobile, and DevOps insights. We deliver tutorials, best practices, and industry updates to help developers build smarter, faster, and more scalable applications."</p>
+            <div class="flex space-x-4">
+              <a href="#" class="hover:text-primary text-gray-600 transition-colors" aria-label="Instagram">
+              <i class="fa-brands fa-instagram text-2xl"></i>
+              </a>
+              <a href="#" class="hover:text-primary text-gray-600 transition-colors" aria-label="X">
+                <i class="fa-brands fa-square-x-twitter text-2xl"></i>
+              </a>
+              <a href="#" class="hover:text-primary text-gray-600 transition-colors" aria-label="Github">
+                  <i class="fa-brands fa-github text-2xl"></i>
+              </a>
+            </div>
+          </div>
+
+          <div>
+            <h3 class="mb-4 text-sm font-medium tracking-wider uppercase">Information</h3>
+            <ul class="space-y-2">
+              <li><a href="about.html" class="text-muted-foreground hover:text-primary text-sm transition-colors">About </a></li>
+              <li><a href="contact.html" class="text-muted-foreground hover:text-primary text-sm transition-colors">Contact</a></li>
+              <li><a href="#" class="text-muted-foreground hover:text-primary text-sm transition-colors">Terms of Use</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="border-t">
+        <div class="magazine-container flex flex-col items-center justify-center py-6 md:flex-row">
+          <p class="text-muted-foreground mb-4 text-sm md:mb-0">&copy; 2025 FettiVerse Magazine. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Mobile Navigation Overlay (same as index.html) -->
+    <div id="mobileNav" class="fixed inset-0 z-40 translate-x-full transform bg-white transition-transform duration-300 ease-in-out">
+      <div class="flex h-full flex-col items-center justify-center space-y-8 p-8">
+        <button class="absolute top-8 right-8" aria-label="Close menu">
+          <svg id="closeIcon" class="hidden" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+
+        <a href="../index.html" class="text-2xl font-medium">Home</a>
+        <a href="allArticle.html" class="text-2xl font-medium">Articles</a>
+        <a href="about.html" class="text-2xl font-medium">About</a>
+        <a href="contact.html" class="text-2xl font-medium">Contact</a>
+      </div>
+    </div>
+
+    <!-- JavaScript for interactive elements (same as index.html) -->
+    <script>
+      // Header scroll effect
+      window.addEventListener('scroll', function() {
+        const header = document.querySelector('header');
+        if (header) {
+          if (window.scrollY > 50) {
+            header.classList.add('bg-white', 'shadow-sm');
+            header.classList.remove('bg-transparent');
+          } else {
+            header.classList.add('bg-transparent');
+            header.classList.remove('bg-white', 'shadow-sm');
+          }
+        }
+      });
+
+      // Mobile menu toggle
+      const menuButton = document.getElementById('menuButton');
+      const burgerIcon = document.getElementById('burgerIcon');
+      const closeIcon = document.getElementById('closeIcon');
+      const mobileNav = document.getElementById('mobileNav');
+
+      menuButton.addEventListener('click', () => {
+        const isOpen = !mobileNav.classList.contains('translate-x-full');
+
+        if (isOpen) {
+          // Close menu
+          mobileNav.classList.add('translate-x-full');
+          burgerIcon.classList.remove('hidden');
+          closeIcon.classList.add('hidden');
+        } else {
+          // Open menu
+          mobileNav.classList.remove('translate-x-full');
+          burgerIcon.classList.add('hidden');
+          closeIcon.classList.remove('hidden');
+        }
+      });
+    </script>
+</body>
+</html>
