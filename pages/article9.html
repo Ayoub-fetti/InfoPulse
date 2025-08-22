@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Agentic AI is emerging as a powerful advancement beyond traditional automation. While automation follows predefined rules, agentic AI can reason, adapt, and act independently. This article explores the differences between the two, with examples of where each fits in modern workflows." />
+    <meta name="keywords" content="Agentic AI,Traditional Automation,AI vs Automation,Autonomous AI Systems,AI Agents,Future of Automation,AI Decision Making,Agentic AI in DevOps,AI vs RPA,Adaptive AI,Intelligent Automation,AI in Business Workflows,Agentic AI Examples,AI and Human Collaboration,Next Generation Automation">
+    <meta name="author" content="Ayoub Fetti">    
+    <title>How Does Agentic AI Differ from Traditional Automation - FettiVerse</title>
+    <link rel="shortcut icon" href="/assets/logo.png" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      // Configure Tailwind (ignore TypeScript error - this is available at runtime via CDN)
+      // @ts-ignore
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['Inter', 'sans-serif'],
+              serif: ['Playfair Display', 'serif'],
+            },
+            colors: {
+              background: '#ffffff',
+              foreground: '#1a1a1a',
+              'muted-foreground': '#6b6b6b',
+              primary: '#1a73e8',
+              'primary-foreground': '#ffffff',
+              secondary: '#f7f7f7',
+              'secondary-foreground': '#1a1a1a',
+            },
+          },
+        },
+      }
+    </script>
+
+    <style type="text/css">
+      /* Custom utility classes */
+      .magazine-container {
+        width: 100%;
+        max-width: 1280px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      
+      .nav-link {
+        position: relative;
+        color: #1a1a1a;
+        font-weight: 500;
+        font-size: 0.875rem;
+        transition: color 0.3s ease;
+      }
+      
+      .nav-link:after {
+        content: '';
+        position: absolute;
+        width: 0;
+        height: 1px;
+        bottom: -4px;
+        left: 0;
+        background-color: #1a73e8;
+        transition: width 0.3s ease;
+      }
+      
+      .nav-link:hover {
+        color: #1a73e8;
+      }
+      
+      .nav-link:hover:after {
+        width: 100%;
+      }
+
+      /* Shadow utility */
+      .shadow-sm {
+        box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+      }
+
+      /* Article content styles */
+      .article-content {
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      .article-content h2 {
+        font-size: 1.875rem;
+        font-weight: 600;
+        margin-top: 2rem;
+        margin-bottom: 1rem;
+        color: #1a1a1a;
+      }
+
+      .article-content h3 {
+        font-size: 1.5rem;
+        font-weight: 600;
+        margin-top: 1.5rem;
+        margin-bottom: 0.75rem;
+        color: #1a1a1a;
+      }
+
+      .article-content p {
+        margin-bottom: 1.25rem;
+        line-height: 1.75;
+        color: #4a4a4a;
+      }
+
+      .article-content ul, .article-content ol {
+        margin-bottom: 1.25rem;
+        padding-left: 1.5rem;
+      }
+
+      .article-content li {
+        margin-bottom: 0.5rem;
+        line-height: 1.75;
+        color: #4a4a4a;
+      }
+
+      .article-content blockquote {
+        border-left: 4px solid #187023;
+        padding-left: 1.5rem;
+        margin: 2rem 0;
+        font-style: italic;
+        font-size: 1.125rem;
+        color: #6b6b6b;
+      }
+
+      .article-content pre {
+        background-color: #f7f7f7;
+        padding: 1rem;
+        border-radius: 0.5rem;
+        overflow-x: auto;
+        margin: 1.5rem 0;
+      }
+
+      .article-content code {
+        background-color: #f7f7f7;
+        padding: 0.25rem 0.5rem;
+        border-radius: 0.25rem;
+        font-family: 'Courier New', monospace;
+        font-size: 0.875rem;
+      }
+    </style>
+</head>
+
+<body class="bg-background text-foreground antialiased">
+    <!-- Header (same as index.html) -->
+    <header class="fixed top-0 right-0 left-0 z-50 bg-transparent py-8 px-8 transition-all duration-300 ease-in-out">
+      <div class="magazine-container">
+        <div class="flex items-center justify-between">
+          <div class="flex items-center">
+            <a href="../index.html" class="font-serif text-xl font-medium tracking-tight md:text-2xl"> FettiVerse </a>
+          </div>
+
+          <!-- Desktop Navigation -->
+          <nav class="hidden items-center space-x-8 md:flex">
+            <a href="../index.html" class="nav-link">Home</a>
+            <a href="allArticle.html" class="nav-link">Articles</a>
+            <a href="about.html" class="nav-link">About</a>
+            <a href="contact.html" class="nav-link">Contact</a>
+          </nav>
+
+          <!-- Mobile Menu Button -->
+          <button id="menuButton" class="p-2 md:hidden" aria-label="Toggle menu">
+            <svg id="burgerIcon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="3" y1="12" x2="21" y2="12"></line>
+              <line x1="3" y1="6" x2="21" y2="6"></line>
+              <line x1="3" y1="18" x2="21" y2="18"></line>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main class="px-8">
+      <!-- Article Hero Section -->
+      <section class="relative pt-32 pb-16">
+        <div class="magazine-container">
+          <div class="max-w-4xl mx-auto text-center">
+            <!-- Article Meta -->
+            <div class="mb-6">
+              <span class="bg-primary/5 text-primary inline-block rounded-full px-3 py-1 text-xs tracking-widest uppercase mb-4">
+                AI & Automation
+              </span>
+              <div class="flex items-center justify-center space-x-4 text-sm text-muted-foreground">
+                <time datetime="2023-12-01">August 22, 2025</time>
+                <span>•</span>
+                <span>10 min read</span>
+              </div>
+            </div>
+
+            <!-- Article Title -->
+            <h1 class="mb-8 font-serif text-4xl leading-tight font-medium md:text-5xl lg:text-6xl max-w-4xl mx-auto">
+              How Does Agentic AI Differ from Traditional Automation?
+            </h1>
+
+            <!-- Article Subtitle -->
+            <p class="text-muted-foreground text-xl max-w-3xl mx-auto mb-12">
+              Understanding the shift from rule-based automation to autonomous, decision-making AI systems
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Featured Image -->
+      <section class="pb-16">
+        <div class="magazine-container">
+          <div class="max-w-5xl mx-auto">
+            <div class="overflow-hidden rounded-lg">
+              <img src="/assets/automation.jpg" loading="lazy" alt="Article featured image" class="w-full h-[400px] md:h-[500px] object-cover" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Article Content -->
+      <section class="pb-20">
+        <div class="magazine-container">
+          <article class="article-content">
+            <!-- Article Body -->
+            <div class="prose prose-lg max-w-none">
+              <p>
+                Agentic AI is emerging as a powerful advancement beyond traditional automation. While automation follows predefined rules, agentic AI can reason, adapt, and act independently. This article explores the differences between the two, with examples of where each fits in modern workflows.
+              </p>
+
+              <p>
+                Automation has been a cornerstone of technology for decades—streamlining repetitive tasks, improving efficiency, and reducing human error. But as businesses face increasingly complex challenges, a new paradigm is taking shape: Agentic AI. Unlike traditional automation, which is limited to following strict instructions, agentic AI can analyze, learn, and act with a higher degree of independence.
+              </p>
+              <p>
+                So how exactly does <span class="font-bold">agentic AI</span> differ from <span class="font-bold">traditional automation</span>?
+              </p>
+
+              <h2>What is Traditional Automation?</h2>
+              <p>
+                Traditional automation relies on rule-based systems and scripts. It performs repetitive, predictable tasks with speed and accuracy—for example:
+              </p>
+              <ul>
+                <li>* Running scheduled jobs</li>
+                <li>* Processing data in a workflow</li>
+                <li>* Managing CI/CD pipeline steps</li>
+                <li>* Performing system backups</li>
+              </ul>
+              <p>
+                It excels in environments where rules are clear and outcomes are predictable. However, it struggles when faced with dynamic or ambiguous scenarios.
+              </p>
+
+              <h2>What is Agentic AI?</h2>
+              <p>
+                Agentic AI refers to <span class="font-bold">AI systems that act as “agents”</span>—autonomous entities capable of perceiving their environment, making decisions, and taking action toward specific goals. Unlike traditional automation, agentic AI doesn’t just execute commands; it adapts, plans, and learns.
+              </p>
+              <p>Examples include:</p>
+              <ul>
+                <li>* AI-powered assistants that manage incidents in DevOps</li>
+                <li>* Autonomous bots that optimize cloud infrastructure costs</li>
+                <li>* Customer service agents that adapt their responses based on conversation flow</li>
+              </ul>
+              
+              <h2>Key Differences Between Agentic AI and Traditional Automation</h2>
+              <table class="table-auto w-full border border-gray-200 rounded-lg overflow-hidden my-8">
+                <thead class="bg-secondary">
+                  <tr>
+                    <th class="px-4 py-3 text-left font-semibold text-foreground border-b border-gray-200 font-bold">Feature</th>
+                    <th class="px-4 py-3 text-left font-semibold text-foreground border-b border-gray-200">Traditional Automation</th>
+                    <th class="px-4 py-3 text-left font-semibold text-foreground border-b border-gray-200">Agentic AI</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="even:bg-gray-50">
+                    <td class="px-4 py-3 border-b border-gray-200 font-bold">Flexibility</td>
+                    <td class="px-4 py-3 border-b border-gray-200">Fixed rules & scripts</td>
+                    <td class="px-4 py-3 border-b border-gray-200">Adaptive, learns from data</td>
+                  </tr>
+                  <tr class="even:bg-gray-50">
+                    <td class="px-4 py-3 border-b border-gray-200 font-bold">Decision-making</td>
+                    <td class="px-4 py-3 border-b border-gray-200">Predefined workflows</td>
+                    <td class="px-4 py-3 border-b border-gray-200">Autonomous reasoning & planning</td>
+                  </tr>
+                  <tr class="even:bg-gray-50">
+                    <td class="px-4 py-3 border-b border-gray-200 font-bold">Scope</td>
+                    <td class="px-4 py-3 border-b border-gray-200">Narrow, task-specific</td>
+                    <td class="px-4 py-3 border-b border-gray-200">Broad, goal-oriented</td>
+                  </tr>
+                  <tr class="even:bg-gray-50">
+                    <td class="px-4 py-3 border-b border-gray-200 font-bold">Handling Change</td>
+                    <td class="px-4 py-3 border-b border-gray-200">Breaks with unexpected input</td>
+                    <td class="px-4 py-3 border-b border-gray-200">Adapts to new situations</td>
+                  </tr>
+                  <tr class="even:bg-gray-50">
+                    <td class="px-4 py-3 font-bold">Examples</td>
+                    <td class="px-4 py-3">Cron jobs, scripts, RPA</td>
+                    <td class="px-4 py-3">AI agents, autonomous assistants</td>
+                  </tr>
+                </tbody>
+              </table>
+
+              <h2>Why Agentic AI Matters?</h2>
+              <ul>
+                <li>* <span class="font-bold">Scalability</span>: Handles dynamic, unpredictable environments.</li>
+                <li>* <span class="font-bold">Efficiency</span>: Reduces the need for constant human oversight.</li>
+                <li>* <span class="font-bold">Resilience</span>: Adapts when systems or inputs change.</li>
+                <li>* <span class="font-bold">Innovation</span>: Opens possibilities for fully autonomous operations.</li>
+              </ul>
+
+              <h2>When to Use Each?</h2>
+              <ul>
+                <li>* <span class="font-bold">Traditional Automation</span> → Best for simple, repetitive, and highly predictable processes.</li>
+                <li>* <span class="font-bold">Agentic AI</span> → Best for complex workflows, decision-making under uncertainty, and adaptive systems.</li>
+              </ul>
+
+              <h2>Takeaway</h2>
+              <p>
+                While traditional automation remains valuable, agentic AI represents a leap forward. It doesn’t just follow orders—it acts with purpose, adapts to challenges, and collaborates with humans. In many industries, the future will involve a hybrid approach: using automation for efficiency and agentic AI for intelligence.
+              </p>
+
+              <blockquote>
+                “Automation is about efficiency; AI is about adaptability.” — Satya Nadella, CEO of Microsoft
+              </blockquote>
+
+            <!-- Article Tags -->
+            <div class="mt-12 pt-8 border-t">
+              <h3 class="text-sm font-medium tracking-wider uppercase mb-4">Tags</h3>
+              <div class="flex flex-wrap gap-2">
+                <span class="bg-secondary text-secondary-foreground px-3 py-1 rounded-full text-sm">AI Agents</span>
+                <span class="bg-secondary text-secondary-foreground px-3 py-1 rounded-full text-sm">Future of Automation</span>
+                <span class="bg-secondary text-secondary-foreground px-3 py-1 rounded-full text-sm">AI Decision Making</span>
+                <span class="bg-secondary text-secondary-foreground px-3 py-1 rounded-full text-sm">Agentic AI in DevOps</span>
+                <span class="bg-secondary text-secondary-foreground px-3 py-1 rounded-full text-sm">AI vs RPA</span>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- Related Articles -->
+      <section class="bg-secondary/30 py-20">
+        <div class="magazine-container">
+          <div class="mb-12 flex items-end justify-between">
+            <div>
+              <h2 class="mb-2 font-serif text-3xl font-medium">Latest Articles</h2>
+              <p class="text-muted-foreground max-w-xl">Tips, tutorials, and stories from the world of web, mobile, and DevOps development.</p>
+            </div>
+            <a href="allArticle.html" class="group hidden items-center text-sm font-medium tracking-wider uppercase md:inline-flex">
+              View All
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-2 transition-transform group-hover:translate-x-1">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </a>
+          </div>
+
+          <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 lg:gap-8">
+            <!-- Article Card 1 -->
+            <article class="article-card overflow-hidden rounded-lg">
+              <a href="article3.html" class="block">
+                <div class="overflow-hidden">
+                  <img src="/assets/ai.jpg" loading="lazy" alt="Slow Living" class="h-64 w-full object-cover" />
+                </div>
+                <div class="p-6">
+                  <div class="mb-3">
+                    <span class="text-primary text-xs font-medium tracking-wider uppercase"> DevOps & Cloud Mastery </span>
+                  </div>
+                  <h3 class="mb-3 font-serif text-xl font-medium">AI in DevOps & Pipeline Automation</h3>
+                  <p class="text-muted-foreground mb-4 text-sm">Smarter Workflows, Faster Delivery</p>
+                  <div class="text-muted-foreground flex items-center justify-between text-xs">
+                    <span>August 17, 2025</span>
+                  </div>
+                </div>
+              </a>
+            </article>
+
+            <!-- Article Card 2 -->
+            <article class="article-card overflow-hidden rounded-lg">
+              <a href="article4.html" class="block">
+                <div class="overflow-hidden">
+                  <img src="/assets/java.jpg" loading="lazy" alt="Culinary Traditions" class="h-64 w-full object-cover" />
+                </div>
+                <div class="p-6">
+                  <div class="mb-3">
+                    <span class="text-primary text-xs font-medium tracking-wider uppercase"> Web Development </span>
+                  </div>
+                  <h3 class="mb-3 font-serif text-xl font-medium">Fixing the Infamous NullPointerException in Java</h3>
+                  <p class="text-muted-foreground mb-4 text-sm">What is a NullPointerException?</p>
+                  <div class="text-muted-foreground flex items-center justify-between text-xs">
+                    <span>August 17, 2025</span>
+                  </div>
+                </div>
+              </a>
+            </article>
+
+            <!-- Article Card 3 -->
+            <article class="article-card overflow-hidden rounded-lg">
+              <a href="article1.html" class="block">
+                <div class="overflow-hidden">
+                  <img src="/assets/coding.jpg" loading="lazy" alt="Digital Craftsmanship" class="h-64 w-full object-cover" />
+                </div>
+                <div class="p-6">
+                  <div class="mb-3">
+                    <span class="text-primary text-xs font-medium tracking-wider uppercase"> Web Development </span>
+                  </div>
+                  <h3 class="mb-3 font-serif text-xl font-medium">Build the Future, One Line at a Time</h3>
+                  <p class="text-muted-foreground mb-4 text-sm">From Beginner Basics to Expert-Level Development</p>
+                  <div class="text-muted-foreground flex items-center justify-between text-xs">
+                    <span>February 4, 2025</span>
+                  </div>
+                </div>
+              </a>
+            </article>
+          </div>
+
+          <div class="mt-12 text-center md:hidden">
+            <a href="allArticle.html" class="group inline-flex items-center text-sm font-medium tracking-wider uppercase">
+              View All Articles
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-2 transition-transform group-hover:translate-x-1">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer (same as index.html) -->
+    <footer class="border-t bg-white px-8">
+      <div class="magazine-container py-16">
+        <div class="grid grid-cols-1 gap-8 md:grid-cols-3">
+          <div class="md:col-span-2">
+            <a href="../index.html" class="mb-4 inline-block font-serif text-2xl font-medium tracking-tight"> FettiVerse </a>
+            <p class="text-muted-foreground mb-6 max-w-md">" FettiVerse is your go-to source for web, mobile, and DevOps insights. We deliver tutorials, best practices, and industry updates to help developers build smarter, faster, and more scalable applications."</p>
+            <div class="flex space-x-4">
+              <a href="#" class="hover:text-primary text-gray-600 transition-colors" aria-label="Instagram">
+              <i class="fa-brands fa-instagram text-2xl"></i>
+              </a>
+              <a href="#" class="hover:text-primary text-gray-600 transition-colors" aria-label="X">
+                <i class="fa-brands fa-square-x-twitter text-2xl"></i>
+              </a>
+              <a href="#" class="hover:text-primary text-gray-600 transition-colors" aria-label="Github">
+                  <i class="fa-brands fa-github text-2xl"></i>
+              </a>
+            </div>
+          </div>
+
+          <div>
+            <h3 class="mb-4 text-sm font-medium tracking-wider uppercase">Information</h3>
+            <ul class="space-y-2">
+              <li><a href="about.html" class="text-muted-foreground hover:text-primary text-sm transition-colors">About </a></li>
+              <li><a href="contact.html" class="text-muted-foreground hover:text-primary text-sm transition-colors">Contact</a></li>
+              <li><a href="#" class="text-muted-foreground hover:text-primary text-sm transition-colors">Terms of Use</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="border-t">
+        <div class="magazine-container flex flex-col items-center justify-center py-6 md:flex-row">
+          <p class="text-muted-foreground mb-4 text-sm md:mb-0">&copy; 2025 FettiVerse Magazine. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Mobile Navigation Overlay (same as index.html) -->
+    <div id="mobileNav" class="fixed inset-0 z-40 translate-x-full transform bg-white transition-transform duration-300 ease-in-out">
+      <div class="flex h-full flex-col items-center justify-center space-y-8 p-8">
+        <button class="absolute top-8 right-8" aria-label="Close menu">
+          <svg id="closeIcon" class="hidden" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+
+        <a href="../index.html" class="text-2xl font-medium">Home</a>
+        <a href="allArticle.html" class="text-2xl font-medium">Articles</a>
+        <a href="about.html" class="text-2xl font-medium">About</a>
+        <a href="contact.html" class="text-2xl font-medium">Contact</a>
+      </div>
+    </div>
+
+    <!-- JavaScript for interactive elements (same as index.html) -->
+    <script>
+      // Header scroll effect
+      window.addEventListener('scroll', function() {
+        const header = document.querySelector('header');
+        if (header) {
+          if (window.scrollY > 50) {
+            header.classList.add('bg-white', 'shadow-sm');
+            header.classList.remove('bg-transparent');
+          } else {
+            header.classList.add('bg-transparent');
+            header.classList.remove('bg-white', 'shadow-sm');
+          }
+        }
+      });
+
+      // Mobile menu toggle
+      const menuButton = document.getElementById('menuButton');
+      const burgerIcon = document.getElementById('burgerIcon');
+      const closeIcon = document.getElementById('closeIcon');
+      const mobileNav = document.getElementById('mobileNav');
+
+      menuButton.addEventListener('click', () => {
+        const isOpen = !mobileNav.classList.contains('translate-x-full');
+
+        if (isOpen) {
+          // Close menu
+          mobileNav.classList.add('translate-x-full');
+          burgerIcon.classList.remove('hidden');
+          closeIcon.classList.add('hidden');
+        } else {
+          // Open menu
+          mobileNav.classList.remove('translate-x-full');
+          burgerIcon.classList.add('hidden');
+          closeIcon.classList.remove('hidden');
+        }
+      });
+    </script>
+</body>
+</html>
